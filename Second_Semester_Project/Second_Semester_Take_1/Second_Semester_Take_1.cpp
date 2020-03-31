@@ -17,10 +17,10 @@ int main()
 	while (input != "0")
 	{
 		cout << "MAIN MENU" << endl << endl;
-		cout << "What are you working today?" << endl;
-		cout << "1. Arms" << endl;
-		cout << "2. Legs" << endl;
-		cout << "3. Chest" << endl;
+		cout << "What are you wanting to do today?" << endl;
+		cout << "1. Lift Weights" << endl;
+		cout << "2. Cardio" << endl;
+		cout << "3. Nutrition" << endl;
 		cout << "Press 0 to exit program" << endl;
 
 		cin >> input;
