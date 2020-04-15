@@ -12,18 +12,32 @@ class WeightTraining
 private:
 	string weightTrainingName;
 	double weight;
-	double height;
+	double reps;
 	string question;
+	string answer;
+	string response;
+	string exerciseAnswer;
+	double repTotal = 0;
+	double setTotal = 0;
+	double curl = 0;
+	double skullCrusher = 0;
+	double preacherCurl = 0;
+	double benchPress = 0;
+	double butterFly = 0;
+	double calfRaise = 0;
+	double squat = 0;
+	double legPress = 0;
 
 public:
 	void setName(string);
 	
-	void setHeight(double);
 	void setWeight(double);
-	string getName() const;
-	double getHeight() const;
 	double getWeight() const;
-
 	void askQuestion();
-	void askQuestion(string);
+	void showMenu();
+	void showArmsMenu();
+	void showLegsMenu();
+	void menuCopy1();
+	void menuCopy2();
+	
 };

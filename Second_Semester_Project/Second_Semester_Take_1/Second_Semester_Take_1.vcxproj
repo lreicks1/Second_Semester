@@ -151,12 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Arms.cpp" />
+    <ClCompile Include="cardio.cpp" />
+    <ClCompile Include="Flexability.cpp" />
     <ClCompile Include="WeightTraining.cpp" />
     <ClCompile Include="Second_Semester_Take_1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arms.h" />
+    <ClInclude Include="cardio.h" />
+    <ClInclude Include="Flexability.h" />
     <ClInclude Include="WeightTraining.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

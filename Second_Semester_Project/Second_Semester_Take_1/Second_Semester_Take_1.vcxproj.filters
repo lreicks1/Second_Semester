@@ -18,18 +18,24 @@
     <ClCompile Include="Second_Semester_Take_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Arms.cpp">
+    <ClCompile Include="WeightTraining.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WeightTraining.cpp">
+    <ClCompile Include="cardio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flexability.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arms.h">
+    <ClInclude Include="WeightTraining.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WeightTraining.h">
+    <ClInclude Include="cardio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Flexability.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
