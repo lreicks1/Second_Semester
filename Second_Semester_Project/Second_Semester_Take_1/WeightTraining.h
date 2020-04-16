@@ -15,6 +15,7 @@ private:
 	double reps;
 	string question;
 	string answer;
+	string answer2;
 	string response;
 	string exerciseAnswer;
 	double repTotal = 0;
