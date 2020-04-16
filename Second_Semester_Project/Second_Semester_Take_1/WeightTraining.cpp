@@ -26,6 +26,7 @@ void WeightTraining::showMenu()
 	//cout << "Enter 3 for chest" << endl;
 	cout << "Press 0 to exit to main menu." << endl << endl;
 	cin >> response;
+	
 }
 
 void WeightTraining::showArmsMenu()
@@ -80,6 +81,7 @@ void WeightTraining::askQuestion()
 
 	while (response != "0") 
 	{
+		answer = "99";
 		WeightTraining::showMenu();
 	
 
