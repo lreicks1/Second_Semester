@@ -5,6 +5,51 @@
 using namespace std;
 
 
+
+void WeightTraining::getPB()
+{
+	ifstream theFile(userFirst + userLast + ".txt");
+
+	while (theFile >> curlPB >> skullCrusherPB >> preacherCurlPB)
+	{
+		string PBQuestion;
+		cout << "Would you like to view your current personal bests?" << endl;
+		cin >> PBQuestion;
+		if (PBQuestion == "y" or PBQuestion == "Y")
+		{
+			cout << "Curls: " << curlPB << endl;
+			cout << "Skull Crushers: " << skullCrusherPB << endl;
+			cout << "Preacher Curls: " << preacherCurlPB << endl << endl;
+
+		}
+	}
+
+}
+
+void WeightTraining::writePB()
+{
+	ofstream newFile(userFirst + userLast + ".txt");
+
+	newFile << curlPB << " " << skullCrusherPB << " " << preacherCurlPB << endl;
+}
+
+void WeightTraining::getUserName()
+{
+	string PBQuestion;
+	cout << "Do you want to record enter your name to record your Personal Bests?" << endl;
+	cout << "If yes, press Y." << endl << "If you do not wish to, type N." << endl << endl;
+	cin >> userName;
+	if (userName == "Y" or userName == "y")
+	{
+		cout << "Enter first name." << endl;
+		cin >> userFirst;
+		cout << "Enter last name." << endl;
+		cin >> userLast;
+		
+	}
+	
+}
+
 //sets the WeightTrainings weight
 void WeightTraining::setWeight(double w)
 {
@@ -20,9 +65,9 @@ double WeightTraining::getWeight() const
 void WeightTraining::showMenu()
 {
 	
-	cout << "What body part are you working today" << endl;
-	cout << "Enter 1 for arms" << endl;
-	cout << "Enter 2 for legs" << endl;
+	cout << "What body part are you working today?" << endl;
+	cout << "Enter 1 for arms." << endl;
+	cout << "Enter 2 for legs." << endl;
 	//cout << "Enter 3 for chest" << endl;
 	cout << "Press 0 to exit to main menu." << endl << endl;
 	cin >> response;
@@ -32,9 +77,9 @@ void WeightTraining::showMenu()
 void WeightTraining::showArmsMenu()
 {
 	cout << "What arm exercise do you want to perform?" << endl;
-	cout << "Enter 1 for curls" << endl;
-	cout << "Enter 2 for skull crushers" << endl;
-	cout << "Enter 3 for preacher curls" << endl;
+	cout << "Enter 1 for Curls." << endl;
+	cout << "Enter 2 for Skull Crushers." << endl;
+	cout << "Enter 3 for Preacher Curls." << endl;
 	cout << "Press 0 to go back" << endl;
 	cin >> answer;
 }
@@ -42,10 +87,10 @@ void WeightTraining::showArmsMenu()
 void WeightTraining::showLegsMenu()
 {
 	cout << "What leg exercise do you want to perform?" << endl;
-	cout << "Enter 1 for squats" << endl;
-	cout << "Enter 2 for leg press" << endl;
-	cout << "Enter 3 for calf raises" << endl;
-	cout << "Press 0 to go back" << endl;
+	cout << "Enter 1 for Squats." << endl;
+	cout << "Enter 2 for Leg Press." << endl;
+	cout << "Enter 3 for Calf Raises" << endl;
+	cout << "Press 0 to go back." << endl;
 }
 
 void WeightTraining::menuCopy1()
@@ -55,18 +100,22 @@ void WeightTraining::menuCopy1()
 	cout << "How many reps?" << endl;
 	cin >> reps;
 	setTotal = reps * weight;
-	cout << "the total for this set is " << setTotal << " lbs" << endl << endl;
+	cout << "the total for this set is " << setTotal << " lbs." << endl << endl;
 
 }
 
 void WeightTraining::menuCopy2()
 {
-	cout << "do you want to do another set?" << endl;
+	cout << "Do you want to do another set?" << endl;
 	cout << "Press " << "Y" << " to do another set." << endl;
 	cout << "Press N to do a different exercise." << endl;
 	//cout << "Press 0 to return to main menu" << endl << endl;
 	cin >> answer;
-	
+	if (answer == "Y" or answer == "y")
+	{
+		repeat = true;
+	}
+	else repeat = false;
 	
 }
 
@@ -74,37 +123,40 @@ void WeightTraining::menuCopy2()
 void WeightTraining::askQuestion()
 {
 	
-	
-	string answer2;
-	bool repeat = false;
-	//response = 1;
-
 	while (response != "0") 
 	{
 		answer = "99";
+		if (userName == "empty")
+		{
+			getUserName();
+			getPB();
+		}
+
 		WeightTraining::showMenu();
 	
 
 		while (answer != "0" and response == "1")
 		{
-			//cout << "showArmsMenu" << endl;
 			WeightTraining::showArmsMenu();
 			
 			while (answer == "1" or repeat == true)
 			{
+				
 				cout << "Curls" << endl;
 				WeightTraining::menuCopy1();
 				curl = curl + setTotal;
 				WeightTraining::menuCopy2();
-				if (answer == "Y" or answer == "y")
-				{
-					repeat = true;
-				}
-				else repeat = false;
+			
 
 				if (answer == "N" or answer == "n" or answer == "0")
 				{
 					cout << endl << "The total weight lifted doing this exercise is " << curl << " lbs" << endl << endl;
+					if ((curl > curlPB) and (userName != "n" or userName != "N"))
+					{
+						curlPB = curl;
+						cout << "You set a NEW PERSONAL BEST for Curls!!!" << endl << endl;
+						curl = 0;
+					}
 				}
 								
 			}
@@ -114,15 +166,17 @@ void WeightTraining::askQuestion()
 				WeightTraining::menuCopy1();
 				skullCrusher = skullCrusher + setTotal;
 				WeightTraining::menuCopy2();
-				if (answer == "Y" or answer == "y")
-				{
-					repeat = true;
-				}
-				else repeat = false;
+				
 
 				if (answer == "N" or answer == "n" or answer == "0")
 				{
 					cout << endl << "The total weight lifted doing this exercise is " << skullCrusher << " lbs" << endl << endl;
+					if ((skullCrusher > skullCrusherPB) and (userName != "n" or userName != "N"))
+					{
+						skullCrusherPB = skullCrusher;
+						cout << "You set a NEW PERSONAL BEST for Skull Crushers!!!" << endl << endl;
+						skullCrusher = 0;
+					}
 				}
 				
 			}
@@ -132,15 +186,17 @@ void WeightTraining::askQuestion()
 				WeightTraining::menuCopy1();
 				preacherCurl = preacherCurl + setTotal;
 				WeightTraining::menuCopy2();
-				if (answer == "Y" or answer == "y")
-				{
-					repeat = true;
-				}
-				else repeat = false;
+				
 
 				if (answer == "N" or answer == "n" or answer == "0")
 				{
 					cout << endl << "The total weight lifted doing this exercise is " << preacherCurl << " lbs" << endl << endl;
+					if ((preacherCurl > preacherCurlPB) and (userName != "n" or userName != "N"))
+					{
+						preacherCurlPB = preacherCurl;
+						cout << "You set a NEW PERSONAL BEST for Skull Crushers!!!" << endl << endl;
+						preacherCurl = 0;
+					}
 				}				
 			}
 					
@@ -157,11 +213,7 @@ void WeightTraining::askQuestion()
 				WeightTraining::menuCopy1();
 				squat = squat + setTotal;
 				WeightTraining::menuCopy2();
-				if (answer == "Y" or answer == "y")
-				{
-					repeat = true;
-				}
-				else repeat = false;
+				
 
 				if (answer == "N" or answer == "n" or answer == "0")
 				{
@@ -174,12 +226,7 @@ void WeightTraining::askQuestion()
 				WeightTraining::menuCopy1();
 				legPress = legPress + setTotal;
 				WeightTraining::menuCopy2();
-				if (answer == "Y" or answer == "y")
-				{
-					repeat = true;
-				}
-				else repeat = false;
-
+				
 				if (answer == "N" or answer == "n" or answer == "0")
 				{
 					cout << endl << "The total weight lifted doing this exercise is " << legPress << " lbs" << endl << endl;
@@ -192,12 +239,7 @@ void WeightTraining::askQuestion()
 				WeightTraining::menuCopy1();
 				calfRaise = calfRaise + setTotal;
 				WeightTraining::menuCopy2();
-				if (answer == "Y" or answer == "y")
-				{
-					repeat = true;
-				}
-				else repeat = false;
-
+				
 				if (answer == "N" or answer == "n" or answer == "0")
 				{
 					cout << endl << "The total weight lifted doing this exercise is " << calfRaise << " lbs" << endl << endl;
@@ -208,6 +250,11 @@ void WeightTraining::askQuestion()
 
 
 		}
+	}
+
+	if (response == "0")
+	{
+		writePB();
 	}
 
 }
